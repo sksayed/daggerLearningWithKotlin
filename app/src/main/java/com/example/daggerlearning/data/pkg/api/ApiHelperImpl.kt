@@ -9,8 +9,8 @@ import javax.inject.Named
 class ApiHelperImpl @Inject constructor(@Named() private val apiService: ApiService):ApiHelper{
 
     override suspend fun getUsers(): Response<List<User>> = apiService.getUsers()
-    override suspend fun getPost(postId: Int): Post {
-        return apiService.getPost(postId)
+    override suspend fun getPostAsync(postId: Int): Post {
+        return apiService.getPostAsync(postId)
     }
 
 }

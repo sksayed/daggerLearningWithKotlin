@@ -1,23 +1,23 @@
 package com.example.daggerlearning.ui.main
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.example.daggerlearning.R
 import com.example.daggerlearning.data.pkg.api.ApiService
 import com.example.daggerlearning.data.pkg.model.BengaliUser
-import com.example.daggerlearning.data.pkg.model.EnglishUser
 import com.example.daggerlearning.data.pkg.model.Person
-import com.example.daggerlearning.data.pkg.model.SpanishUser
+import com.example.daggerlearning.databinding.ActivityMainBinding
 import com.example.daggerlearning.di.module.EnglishUserQualifier
-import com.example.daggerlearning.di.module.SpanishUserQualifier
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
 
     @EnglishUserQualifier
     @Inject
@@ -28,20 +28,39 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var apiService: ApiService
+
+
+    private lateinit var binding: ActivityMainBinding
+   /* by lazy {
+
+      //Keep an eye on this and make sure it works
+      *//*  DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_main
+        )*//*
+
+        ActivityMainBinding.inflate(layoutInflater)
+    }*/
+
+    private val navController by lazy {
+        Navigation.findNavController(findViewById(R.id.nav_host_fragment_container))
+    }
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        spanishUser.speak()
-        bengaliUser.speak()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        runBlocking{
-            launch {
-              val post =  apiService.getPost(15)
-                println("Post Message is ")
-                println(post)
-
-            }
-        }
+//        spanishUser.speak()
+//        bengaliUser.speak()
+//
+//        lifecycleScope.launch(Dispatchers.IO){
+//              val post =  apiService.getPostAsync(15)
+//                println("Post Message is ")
+//                println(post)
+//
+//
+//        }
 
     }
 }

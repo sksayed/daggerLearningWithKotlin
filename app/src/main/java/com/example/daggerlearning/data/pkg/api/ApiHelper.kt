@@ -8,5 +8,5 @@ interface ApiHelper {
 
     suspend fun getUsers(): Response<List<User>>
 
-    suspend fun getPost(postId:Int = 1): Post
+    suspend fun getPostAsync(postId:Int = 1): Post
 }

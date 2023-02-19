@@ -8,6 +8,7 @@ import com.example.daggerlearning.data.pkg.api.ApiService
 import com.example.daggerlearning.data.pkg.model.BengaliUser
 import com.example.daggerlearning.data.pkg.model.EnglishUser
 import com.example.daggerlearning.di.module.ApplicationModule.Companion.URL_MOCKAPI
+import com.example.daggerlearning.utils.CoroutineDispatcherProvider
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -81,5 +82,9 @@ class ApplicationModule {
         const val URL_TYPECODE = "ULR_TYPECODE"
         const val URL_MOCKAPI = "ULR_MOCKAPI"
     }
+
+    @Provides
+    fun provideCoroutineDispatcherProvider()= CoroutineDispatcherProvider()
+
 
 }

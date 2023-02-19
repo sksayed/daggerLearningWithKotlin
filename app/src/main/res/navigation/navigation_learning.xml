@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_learning_graph"
+    app:startDestination="@id/firstPageFragment">
+
+    <fragment
+        android:id="@+id/firstPageFragment"
+        android:name="com.example.daggerlearning.ui.main.FirstPageFragment"
+        android:label="fragment_first_page"
+        tools:layout="@layout/fragment_first_page">
+        <action
+            android:id="@+id/action_firstPageFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.example.daggerlearning.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second">
+        <action
+            android:id="@+id/action_secondPageFragment_to_firstPageFragment"
+            app:destination="@id/firstPageFragment" />
+    </fragment>
+
+
+</navigation>

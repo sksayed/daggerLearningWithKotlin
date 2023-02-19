@@ -11,5 +11,5 @@ interface ApiService {
     suspend fun getUsers(): Response<List<User>>
 
     @GET("posts/{id}")
-    suspend fun getPost(@Path("id") postID: Int): Post
+    suspend fun getPostAsync(@Path("id") postID: Int): Post
 }
